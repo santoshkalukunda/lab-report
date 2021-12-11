@@ -7,7 +7,7 @@
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('home') }}">
             {{-- <img src="{{ asset('argon') }}/img/brand/lab.jpg" class="navbar-brand-img" alt="Lab Report"> --}}
-            <h2>Lab Report</h2>
+            <h3>Lab Report System</h3>
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
@@ -45,7 +45,7 @@
                     <div class="col-6 collapse-brand">
                         <a href="{{ route('home') }}">
                             {{-- <img src="{{ asset('argon') }}/img/brand/lab.jpg"> --}}
-                            <h2>Lab Report</h2>
+                            <h3>Lab Report System</h3>
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
