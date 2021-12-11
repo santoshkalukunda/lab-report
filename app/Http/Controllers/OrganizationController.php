@@ -42,20 +42,20 @@ class OrganizationController extends Controller
         $data = $request->validated();
         $organization= Organization::first();
         if($request->logo != null){
-            if (File::exists($organization->logo)) {
+            // if (File::exists($organization->logo)) {
               
-                unlink($organization->logo);
-            }
-            $file = $request->file('logo');
-            $fileName = "logo-".date("Ymdhis").rand(0,9999).".".$file->getClientOriginalExtension();
-            $destinationPath = public_path();
-            $file->move($destinationPath,$fileName);
-            $data = ['logo'=>$fileName];
+            //     unlink($organization->logo);
+            // }
+            // $file = $request->file('logo');
+            // $fileName = "logo-".date("Ymdhis").rand(0,9999).".".$file->getClientOriginalExtension();
+            // $destinationPath = public_path();
+            // $file->move($destinationPath,$fileName);
+            // $data = ['logo'=>$fileName];
             
-            // Storage::delete($organization->logo);
-            // $baseDir = 'upload/logo/' . date('Y') . '/' . date('M');
-            // $imgPath = Storage::putFile($baseDir, $request->file('logo'));
-            // $data = ['logo'=>$imgPath];
+            Storage::delete($organization->logo);
+            $baseDir = 'upload/logo/' . date('Y') . '/' . date('M');
+            $imgPath = Storage::putFile($baseDir, $request->file('logo'));
+            $data = ['logo'=>$imgPath];
         }
         
         $organization->update($data);

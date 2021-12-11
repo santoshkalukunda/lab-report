@@ -68,7 +68,7 @@
     <div>
         <div class="row">
             <div class="col-md-2">
-                <img src="{{public_path($organization->logo)}}" width="70px" height="70px">
+                <img src="{{public_path('logo.jpg')}}" width="70px" height="70px">
             </div>
             
                 <div class="text-center" style="font-size: 16px;">{{ $organization->name }}</div>

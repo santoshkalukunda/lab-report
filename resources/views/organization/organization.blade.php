@@ -15,7 +15,7 @@
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
                                
-                                    <img src="{{asset($organization->logo) }}" class="border" style=" max-height:200px;">
+                                    <img src="{{asset('storage/'.$organization->logo) }}" class="border" style=" max-height:200px;">
                                 
                             </div>
                         </div>
