@@ -20,7 +20,7 @@ class OrganizationSeeder extends Seeder
             'address' => 'Butwal , nepal',
             'email' => 'admin@gamil.com',
             'url' => 'lab.kalukunda.com.np',
-            'logo' => 'microscope',
+            'logo' => 'mic.png',  
             'created_at' => now(),
             'updated_at' => now()
         ]);

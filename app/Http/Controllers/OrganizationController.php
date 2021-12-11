@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Organization;
 use App\Http\Requests\StoreOrganizationRequest;
 use App\Http\Requests\UpdateOrganizationRequest;
-use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File; 
 
 class OrganizationController extends Controller
 {
@@ -42,7 +42,10 @@ class OrganizationController extends Controller
         $data = $request->validated();
         $organization= Organization::first();
         if($request->logo != null){
-            unlink($organization->logo);
+            if (File::exists($organization->logo)) {
+              
+                unlink($organization->logo);
+            }
             $file = $request->file('logo');
             $fileName = "logo-".date("Ymdhis").rand(0,9999).".".$file->getClientOriginalExtension();
             $destinationPath = public_path();

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\patient;
+use App\Models\Patient;
 use App\Http\Requests\StorepatientRequest;
 use App\Http\Requests\UpdatepatientRequest;
 use App\Models\Test;
