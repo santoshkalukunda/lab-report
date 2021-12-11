@@ -2,7 +2,7 @@
 
 @section('content')
     @include('users.partials.header', [
-    'title' => __('Patients List'),
+    'title' => __('Patients Register'),
 
     ])
     <div class="container">

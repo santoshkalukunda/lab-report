@@ -10,12 +10,11 @@
             <div class="col-xl-12 px-0">
                 
                 <div class="text-center">
-                    <h1>{{ $patient->name }}</h1>
-                    <h3><b>Address:</b> {{ $patient->address }}</h3>
-                    <h3><b>Date:</b> {{ $patient->date }}</h3>
-                    <h3><b>Age :</b> {{ $patient->age }}{{ $patient->in }} | <b>Gender:</b>
-                        {{ $patient->gender = 'M' ? 'Male' : 'Female' }}</h3>
-                    <h3><b>Phone: </b>{{ $patient->phone }} <b>Email: </b>{{ $patient->email }}</h3>
+                    <h2>{{ $patient->name }}</h2>
+                    <div><b>Address:</b> {{ $patient->address }}</div>
+                    <div><b>Date:</b> {{ $patient->date }}</div>
+                    <div><b>Age :</b> {{ $patient->age }}{{ $patient->in }} | <b>Gender:</b>
+                        {{ $patient->gender = 'M' ? 'Male' : 'Female' }}</div>
                 </div>
                 <div class="text-right">
                     <a href="{{route('test-reports-pdf',$patient)}}" class="btn btn-sm btn-primary fa fa-print m-2" target="_blank"> Print</a>
