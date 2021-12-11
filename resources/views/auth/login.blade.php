@@ -1,11 +1,16 @@
-@extends('layouts.app', [ 'title' => __('[Login]'),'class' => 'bg-secondary'])
+@extends('layouts.app', [ 'title' => __('[Login]'),'class' => 'bg-white'])
 
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4 my-5">
+                <div class=" text-center">
+                    <h3>Geruwa Community Health Center</h3>
+                    <h4>Geruwa-5, Bardiya</h4>
+                    <h5>Lab Report System</h5>
+                </div>
+                <img class="img img-center" src=" {{asset('microscope.jpg')}}" alt="Logo" height="100px" width="100px">
                 <div>
-                    {{-- <div class="card-header">{{ __('Login') }}</div> --}}
                     <div >
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
@@ -67,11 +72,11 @@
                                     </button>
                                 </div>
                                 <div class="col-md-8 offset-md-4">
-                                    @if (Route::has('password.request'))
+                                    {{-- @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
-                                    @endif
+                                    @endif --}}
                                 </div>
                             </div>
                         </form>

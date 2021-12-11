@@ -18,9 +18,9 @@ class OrganizationSeeder extends Seeder
             'name' => 'ABC Lab Pvt. Ltd.',
             'phone' => "098788633",
             'address' => 'Butwal , nepal',
-            'email' => 'admin@argon.com',
+            'email' => 'admin@gamil.com',
             'url' => 'lab.kalukunda.com.np',
-            'logo' => 'argon/img/brand/lab.jpg',
+            'logo' => 'microscope',
             'created_at' => now(),
             'updated_at' => now()
         ]);

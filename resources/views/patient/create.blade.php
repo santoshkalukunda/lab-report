@@ -1,27 +1,21 @@
-@extends('layouts.app', ['title' => __('Patients Register')])
+@extends('layouts.app', ['title' => __('Patients List')])
 
 @section('content')
-@include('users.partials.header', [
-    'title' => __('Patient Register'),
+    @include('users.partials.header', [
+    'title' => __('Patients List'),
 
     ])
     <div class="container">
         @include('message.message')
         <div class="row">
             <div class="col-xl-12 px-0">
+                
                 <div class="card  shadow">
+
                     <div class="card-body">
                         <form method="post" action="{{ route('patients.store') }}">
                             @csrf
-                            @if (session('status'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ session('status') }}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            @endif
-                            <div class="">
+                            <div>
                                 <div class="row">
                                     <div class="col-xl-3">
                                         <div class="form-group{{ $errors->has('date') ? ' has-danger' : '' }}">
@@ -173,3 +167,4 @@
         </div>
     </div>
 @endsection
+

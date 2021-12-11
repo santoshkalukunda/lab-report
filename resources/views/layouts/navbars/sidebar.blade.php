@@ -6,7 +6,7 @@
         </button>
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('home') }}">
-            <img src="{{ asset('argon') }}/img/brand/lab.jpg" class="navbar-brand-img" alt="Lab Report">
+            {{-- <img src="{{ asset('argon') }}/img/brand/lab.jpg" class="navbar-brand-img" alt="Lab Report"> --}}
             <h2>Lab Report</h2>
         </a>
         <!-- User -->
@@ -15,7 +15,7 @@
                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
-                        <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/team-1-800x800.jpg">
+                        <img alt="Image placeholder" src="{{asset('user.png')}}">
                         </span>
                     </div>
                 </a>
@@ -44,7 +44,8 @@
                 <div class="row">
                     <div class="col-6 collapse-brand">
                         <a href="{{ route('home') }}">
-                            <img src="{{ asset('argon') }}/img/brand/lab.jpg">
+                            {{-- <img src="{{ asset('argon') }}/img/brand/lab.jpg"> --}}
+                            <h2>Lab Report</h2>
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
@@ -55,17 +56,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Form -->
-            <form class="mt-4 mb-3 d-md-none">
-                <div class="input-group input-group-rounded input-group-merge">
-                    <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="{{ __('Search') }}" aria-label="Search">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <span class="fa fa-search"></span>
-                        </div>
-                    </div>
-                </div>
-            </form>
             <!-- Navigation -->
             <ul class="navbar-nav">
                 <li class="nav-item">

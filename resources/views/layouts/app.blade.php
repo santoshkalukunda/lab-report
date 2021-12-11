@@ -10,7 +10,7 @@
 
     <title>Lab Report System {{ $title }}</title>
     <!-- Favicon -->
-    <link href="favicon.png" rel="icon" type="image/png">
+    <link href=" {{asset('favicon.png')}}" rel="icon" type="image/png">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <!-- Extra details for Live View on GitHub Pages -->
