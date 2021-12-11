@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Organization;
+
 class HomeController extends Controller
 {
     /**
@@ -21,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $organization= Organization::first();
+        return view('dashboard',compact('organization'));
     }
 }
