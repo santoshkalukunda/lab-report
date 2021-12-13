@@ -96,7 +96,7 @@
             @if ($patient->email)
                 <span><b>Email:</b> {{ $patient->email }} <br></span>
             @endif
-            <span><b>Refferred By:</b> {{ $patient->referred }} <br></span>
+            <span><b>Referred By:</b> {{ $patient->referred }} <br></span>
         </div>
         <div class="col-md-6 text-right">
             <b>Patient ID:</b> {{ $patient->id }} <br>
