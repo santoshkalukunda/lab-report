@@ -10,7 +10,7 @@
             <div class="col-xl-12 px-0">
                 
                 <div class="text-center">
-                    <h2>{{ $patient->name }}</h2>
+                    <h2 class="text-capitalize">{{ $patient->name }}</h2>
                     <div><b>Address:</b> {{ $patient->address }}</div>
                     <div><b>Age :</b> {{ $patient->age }}{{ $patient->in }} | <b>Gender:</b>
                         {{ $patient->gender = 'M' ? 'Male' : 'Female' }}</div>
