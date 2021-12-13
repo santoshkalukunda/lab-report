@@ -12,9 +12,10 @@
                 <div class="text-center">
                     <h2>{{ $patient->name }}</h2>
                     <div><b>Address:</b> {{ $patient->address }}</div>
-                    <div><b>Date:</b> {{ $patient->date }}</div>
                     <div><b>Age :</b> {{ $patient->age }}{{ $patient->in }} | <b>Gender:</b>
                         {{ $patient->gender = 'M' ? 'Male' : 'Female' }}</div>
+                        <div><b>Referred By:</b> {{ $patient->referred }}</div>
+                        <div><b>Date:</b> {{ $patient->date }}</div>
                 </div>
                 <div class="text-right">
                     <a href="{{route('test-reports-pdf',$patient)}}" class="btn btn-sm btn-primary fa fa-print m-2" target="_blank"> Print</a>
