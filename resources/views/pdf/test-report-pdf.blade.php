@@ -11,11 +11,12 @@
             float: left;
             width: 50%;
         }
+
         .col-md-2 {
             float: left;
             width: 2%;
         }
-       
+
 
         /* Clear floats after the columns */
         .row:after {
@@ -68,20 +69,20 @@
     <div>
         <div class="row">
             <div class="col-md-2">
-                <img src="{{public_path('logo.jpg')}}" width="70px" height="70px">
+                <img src="{{ public_path('logo.jpg') }}" width="70px" height="70px">
             </div>
-            
-                <div class="text-center" style="font-size: 16px;">{{ $organization->name }}</div>
-                <div class="text-center">{{ $organization->address }}</div>
-                <div class="text-center">{{ $organization->phone }}</div>
-                <div class="text-center">{{ $organization->email }}</div>
-                <div class="text-center">{{ $organization->url }}</div>
-         
+
+            <div class="text-center" style="font-size: 16px;">{{ $organization->name }}</div>
+            <div class="text-center">{{ $organization->address }}</div>
+            <div class="text-center">{{ $organization->phone }}</div>
+            <div class="text-center">{{ $organization->email }}</div>
+            <div class="text-center">{{ $organization->url }}</div>
+
 
         </div>
-        
 
-        
+
+
     </div>
     <hr>
     <div class="row">
@@ -89,14 +90,22 @@
             <span><b>Name:</b> {{ $patient->name }} <br></span>
             <span><b>Address:</b> {{ $patient->address }} <br></span>
             <span><b>Age/Gender:</b> {{ $patient->age }}{{ $patient->in }}
-                |{{ $patient->gender = 'M' ? 'Male' : 'Female' }} <br></span>
-            @if ($patient->phone)
-                <span><b>Phone:</b> {{ $patient->phone }}<br></span>
-            @endif
-            @if ($patient->email)
-                <span><b>Email:</b> {{ $patient->email }} <br></span>
-            @endif
-            <span><b>Referred By:</b> {{ $patient->referred }} <br></span>
+                | @if ($patient->gender == 'M')
+                    <span>Male</span><br>
+                @endif
+                @if ($patient->gender == 'F')
+                    <span>Female</span><br>
+                @endif
+                @if ($patient->gender == 'O')
+                    <span>Other</span><br>
+                @endif
+                @if ($patient->phone)
+                    <span><b>Phone:</b> {{ $patient->phone }}<br></span>
+                @endif
+                @if ($patient->email)
+                    <span><b>Email:</b> {{ $patient->email }} <br></span>
+                @endif
+                <span><b>Referred By:</b> {{ $patient->referred }} <br></span>
         </div>
         <div class="col-md-6 text-right">
             <b>Patient ID:</b> {{ $patient->id }} <br>
@@ -133,7 +142,7 @@
         </div>
         <div class="col-md-12 text-right" style="margin-top: 20px; text-transform: capitalize">
             <div>.....................................</div>
-            {{Auth::user()->name}}
+            {{ Auth::user()->name }}
             <div>Performed By</div>
         </div>
     </div>

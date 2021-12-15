@@ -13,7 +13,16 @@
                     <h2 class="text-capitalize">{{ $patient->name }}</h2>
                     <div><b>Address:</b> {{ $patient->address }}</div>
                     <div><b>Age :</b> {{ $patient->age }}{{ $patient->in }} | <b>Gender:</b>
-                        {{ $patient->gender = 'M' ? 'Male' : 'Female' }}</div>
+                    @if ($patient->gender == 'M')
+                        <span>Male</span>
+                    @endif
+                    @if ($patient->gender == 'F')
+                        <span>Female</span>
+                    @endif
+                    @if ($patient->gender == 'O')
+                        <span>Other</span>
+                    @endif
+                        
                         <div><b>Referred By:</b> {{ $patient->referred }}</div>
                         <div><b>Date:</b> {{ $patient->date }}</div>
                 </div>
