@@ -72,8 +72,8 @@
 <body>
     <div>
         <div class="row ">
-            <div class="col-md-2" style="margin-top: 30px;">
-                <img src="{{ public_path('logo.jpg') }}" width="100px" height="100px">
+            <div class="col-md-2" style="margin-top: 40px;">
+                <img src="{{ public_path('logo.jpg') }}" width="80px" height="60px">
             </div>
             <div class="text-center" style="font-size: 40px; color:rgb(13, 13, 196);"><b>H</b></div>
             <div class="text-center org-name" style="font-size: 20px;">{{ $organization->name }}</div>
