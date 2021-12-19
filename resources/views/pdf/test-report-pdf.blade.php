@@ -41,7 +41,7 @@
         }
 
         body {
-            margin: 2px 20px;
+            margin: 15px 20px;
             font-size: 12px;
         }
 
@@ -62,21 +62,25 @@
             border: 1px solid red;
         }
 
+        .org-name {
+           color: green;
+        }
+
     </style>
 </head>
 
 <body>
     <div>
-        <div class="row">
-            <div class="col-md-2">
-                <img src="{{ public_path('logo.jpg') }}" width="70px" height="70px">
+        <div class="row ">
+            <div class="col-md-2" style="margin-top: 30px;">
+                <img src="{{ public_path('logo.jpg') }}" width="100px" height="100px">
             </div>
-
-            <div class="text-center" style="font-size: 16px;">{{ $organization->name }}</div>
-            <div class="text-center">{{ $organization->address }}</div>
-            <div class="text-center">{{ $organization->phone }}</div>
-            <div class="text-center">{{ $organization->email }}</div>
-            <div class="text-center">{{ $organization->url }}</div>
+            <div class="text-center" style="font-size: 40px; color:rgb(13, 13, 196);">H</div>
+            <div class="text-center org-name" style="font-size: 20px;">{{ $organization->name }}</div>
+            <div class="text-center org-name">{{ $organization->address }}</div>
+            <div class="text-center org-name">{{ $organization->phone }}</div>
+            <div class="text-center org-name">{{ $organization->email }}</div>
+            <div class="text-center org-name">{{ $organization->url }}</div>
 
 
         </div>
@@ -87,7 +91,7 @@
     <hr>
     <div class="row">
         <div class="col-md-6">
-            <span><b>Name:</b> {{ $patient->name }} <br></span>
+            <span><b>Patient Name:</b> {{ $patient->name }} <br></span>
             <span><b>Address:</b> {{ $patient->address }} <br></span>
             <span><b>Age/Gender:</b> {{ $patient->age }}{{ $patient->in }}
                 | @if ($patient->gender == 'M')
