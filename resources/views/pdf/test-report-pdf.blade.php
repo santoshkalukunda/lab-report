@@ -63,7 +63,7 @@
         }
 
         .org-name {
-           color: green;
+           color: rgb(177, 8, 8);
         }
 
     </style>
