@@ -81,6 +81,7 @@
             <div class="text-center org-name">{{ $organization->phone }}</div>
             <div class="text-center org-name">{{ $organization->email }}</div>
             <div class="text-center org-name">{{ $organization->url }}</div>
+            <div class="text-center" style="font-size: 20px;">Lab Report</div>
 
 
         </div>

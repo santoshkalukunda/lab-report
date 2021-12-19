@@ -16,14 +16,16 @@
 
                     <div class="card-body table-responsive">
                         <table class="table table-hover">
+                            <th>Date</th>
                             <th>Patient Name</th>
                             <th>Test Name</th>
                             <th>Result</th>
                             <th>Unit</th>
                             <th>Method</th>
-                            <th colspan="2">Action</th>
+                            <th>Action</th>
                             @foreach ($testreports as $testreport)
                                 <tr>
+                                    <td>{{$testreport->patient->date}}</td>
                                     <td>{{$testreport->patient->name}}</td>
                                     <td>{{$testreport->test->name}}</td>
                                     <td>{{$testreport->result}}</td>
@@ -31,16 +33,6 @@
                                     <td>{{$testreport->remarks}}</td>
                                     <td>
                                         <a href="{{route('patients.show',$testreport->patient->id)}}"><button class="btn btn-sm btn-success fa fa-eye"></button></a>
-                                    </td>
-                                    <td>
-                                        <form action="{{ route('testreports.destroy', $testreport) }}" method="post">
-                                            @method('delete')
-                                            @csrf
-                                            <button class="btn btn-danger btn-sm" type="submit"
-                                                onclick="return confirm('Are you sure to delete?')"><i class="fa fa-trash"
-                                                    data-toggle="tooltip" data-placement="bottom"
-                                                    title="Delete"></i></button>
-                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
