@@ -96,6 +96,7 @@
                         <th>SN</th>
                         <th>Date</th>
                         <th>Patient Name</th>
+                        <th>Age/Gender</th>
                         <th>Test Name</th>
                         <th>Result</th>
                         <th>Unit</th>
@@ -106,6 +107,7 @@
                             <td>{{$i++}}</td>
                             <td>{{ date('Y-m-d', strtotime($testreport->created_at)) }}</td>
                             <td>{{ $testreport->patient->name }}</td>
+                            <td>{{$testreport->patient->age}}{{ $testreport->patient->in }}| {{ $testreport->patient->gender }}</td>
                             <td>{{ $testreport->test->name }}</td>
                             <td>{{ $testreport->result }}</td>
                             <td>{!! $testreport->test->unit !!}</td>
