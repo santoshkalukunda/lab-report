@@ -116,7 +116,7 @@ class FilterController extends Controller
         $testreports = new Testreport();
         if ($request->has('date_from')) {
             if ($request->date_from != null && $request->date_to != null)
-                $testreports = $testreports->whereBetween('created_at', [$request->date_from, $request->date_to]);
+            $testreports = $testreports->whereBetween('created_at', [date('Y-m-d', strtotime('+0 day', strtotime($request->date_from))), date('Y-m-d', strtotime('+1 day', strtotime($request->date_to)))]);
         }
         if ($request->has('patient_id')) {
             if ($request->patient_id != null)
@@ -143,7 +143,7 @@ class FilterController extends Controller
         $testreports = new Testreport();
         if ($request->has('date_from')) {
             if ($request->date_from != null && $request->date_to != null)
-                $testreports = $testreports->whereBetween('created_at', [$request->date_from, $request->date_to]);
+                $testreports = $testreports->whereBetween('created_at', [date('Y-m-d', strtotime('0 day', strtotime($request->date_from))), date('Y-m-d', strtotime('+1 day', strtotime($request->date_to)))]);
         }
         if ($request->has('patient_id')) {
             if ($request->patient_id != null)
