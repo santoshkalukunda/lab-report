@@ -14,6 +14,8 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filterModal">
                         Filter
                     </button>
+                    <button class="btn btn-danger"  onclick="document.getElementById('pdf-form').submit();">Export To PDF </button>
+                    @include('testreport.pdf-form')
                     @include('testreport.filter-modal')
                 </div>
                 <div class="card  shadow">
@@ -44,7 +46,6 @@
                     </div>
                 </div>
             </div>
-            {{$testreports->links()}}
         </div>
     </div>
 @endsection

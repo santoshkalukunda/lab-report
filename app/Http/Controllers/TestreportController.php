@@ -6,6 +6,7 @@ use App\Models\Testreport;
 use App\Http\Requests\StoreTestreportRequest;
 use App\Http\Requests\UpdateTestreportRequest;
 use App\Models\Patient;
+use App\Models\Test;
 
 class TestreportController extends Controller
 {
@@ -16,8 +17,11 @@ class TestreportController extends Controller
      */
     public function index()
     {
+
         $testreports = Testreport::latest()->simplePaginate(15);
-        return view('testreport.index',compact('testreports'));
+        $tests = Test::get();
+        $patients = Patient::get();
+        return view('testreport.index',compact('testreports','tests','patients'));
     }
 
     /**

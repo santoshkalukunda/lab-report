@@ -147,7 +147,7 @@
         </div>
         <div class="col-md-12 text-right" style="margin-top: 20px; text-transform: capitalize">
             <div>.....................................</div>
-            {{ Auth::user()->name }}
+            {{ $patient->user->name }}
             <div>Performed By</div>
         </div>
     </div>

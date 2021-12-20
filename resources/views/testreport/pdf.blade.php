@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Patients List</title>
+    <title>Test Report</title>
     <style>
         .col-md-6 {
             float: left;
@@ -81,7 +81,7 @@
             <div class="text-center org-name">{{ $organization->phone }}</div>
             <div class="text-center org-name">{{ $organization->email }}</div>
             <div class="text-center org-name">{{ $organization->url }}</div>
-            <div class="text-center" style="font-size: 20px;">Patient List</div>
+            <div class="text-center" style="font-size: 20px;">Test Report List</div>
         </div>
     </div>
     <hr>
@@ -90,32 +90,30 @@
     @endphp
     <div class="row">
         <div class="table-responsive">
-            <table class="table table-hover">
-                <tr>
-                    <th>SN</th>
-                    <th>Date</th>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Age/Gender</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Refered by</th>
-                    <th>Performed by</th>
-                </tr>
-                @foreach ($patients as $patient)
+            <div class="card-body table-responsive">
+                <table class="table table-hover">
                     <tr>
-                        <td>{{$i++}}</td>
-                        <td>{{ $patient->date }}</td>
-                        <td>{{ $patient->name }}</td>
-                        <td>{{ $patient->address }}</td>
-                        <td>{{ $patient->age }} {{ $patient->in }}| {{ $patient->gender }}</td>
-                        <td>{{ $patient->phone }}</td>
-                        <td>{{ $patient->email }}</td>
-                        <td>{{ $patient->referred }}</td>
-                        <td>{{ $patient->user->name }}</td>
+                        <th>SN</th>
+                        <th>Date</th>
+                        <th>Patient Name</th>
+                        <th>Test Name</th>
+                        <th>Result</th>
+                        <th>Unit</th>
+                        <th>Method</th>
                     </tr>
-                @endforeach
-            </table>
+                    @foreach ($testreports as $testreport)
+                        <tr>
+                            <td>{{$i++}}</td>
+                            <td>{{ date('Y-m-d', strtotime($testreport->created_at)) }}</td>
+                            <td>{{ $testreport->patient->name }}</td>
+                            <td>{{ $testreport->test->name }}</td>
+                            <td>{{ $testreport->result }}</td>
+                            <td>{!! $testreport->test->unit !!}</td>
+                            <td>{{ $testreport->remarks }}</td>
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
         </div>
     </div>
 </body>

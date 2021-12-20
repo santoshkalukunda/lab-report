@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Organization;
 use App\Models\Patient;
+use App\Models\Test;
+use App\Models\Testreport;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
 class FilterController extends Controller
 {
-    
+
     public function filterPatient(Request $request)
     {
         $patients = new Patient;
@@ -55,11 +57,12 @@ class FilterController extends Controller
                 $patients = $patients->where('user_id', ["$request->user_id"]);
         }
         $patients = $patients->get();
-        $users= User::get(['id','name']);
-      
-        return view('patient.search-result',compact('patients','users'));
+        $users = User::get(['id', 'name']);
+
+        return view('patient.search-result', compact('patients', 'users'));
     }
-    public function PDFPatient(Request $request){
+    public function PDFPatient(Request $request)
+    {
         $patients = new Patient;
         if ($request->has('date_from')) {
             if ($request->date_from != null && $request->date_to != null)
@@ -103,8 +106,64 @@ class FilterController extends Controller
         }
         $patients = $patients->get();
         $organization = Organization::first();
-        $pdf = PDF::loadView('patient.pdf', compact(['patients','organization']));   
-        $customPaper = array(0,0,950,950);
+        $pdf = PDF::loadView('patient.pdf', compact(['patients', 'organization']));
+        $customPaper = array(0, 0, 950, 950);
         return $pdf->setPaper('A4', 'landscape')->stream("patient-list-" . now() . ".pdf");
+    }
+    public function filterTestReport(Request $request)
+    {
+
+        $testreports = new Testreport();
+        if ($request->has('date_from')) {
+            if ($request->date_from != null && $request->date_to != null)
+                $testreports = $testreports->whereBetween('created_at', [$request->date_from, $request->date_to]);
+        }
+        if ($request->has('patient_id')) {
+            if ($request->patient_id != null)
+                $testreports = $testreports->where('patient_id', ["$request->patient_id"]);
+        }
+        if ($request->has('test_id')) {
+            if ($request->test_id != null)
+                $testreports = $testreports->where('test_id', ["$request->test_id"]);
+        }
+        if ($request->has('result')) {
+            if ($request->result != null)
+                $testreports = $testreports->where('result', ["$request->result"]);
+        }
+        if ($request->has('remarks')) {
+            if ($request->rmarks != null)
+                $testreports = $testreports->where('remarks', 'LIKE', ["$request->remarks%"]);
+        }
+        $testreports = $testreports->get();
+        $tests = Test::get();
+        $patients = Patient::get();
+        return view('testreport.search-result', compact('testreports', 'tests', 'patients'));
+    }
+    public function PDFTestReport(Request $request){
+        $testreports = new Testreport();
+        if ($request->has('date_from')) {
+            if ($request->date_from != null && $request->date_to != null)
+                $testreports = $testreports->whereBetween('created_at', [$request->date_from, $request->date_to]);
+        }
+        if ($request->has('patient_id')) {
+            if ($request->patient_id != null)
+                $testreports = $testreports->where('patient_id', ["$request->patient_id"]);
+        }
+        if ($request->has('test_id')) {
+            if ($request->test_id != null)
+                $testreports = $testreports->where('test_id', ["$request->test_id"]);
+        }
+        if ($request->has('result')) {
+            if ($request->result != null)
+                $testreports = $testreports->where('result', ["$request->result"]);
+        }
+        if ($request->has('remarks')) {
+            if ($request->rmarks != null)
+                $testreports = $testreports->where('remarks', 'LIKE', ["$request->remarks%"]);
+        }
+        $testreports = $testreports->get();
+        $organization = Organization::first();
+        $pdf = PDF::loadView('testreport.pdf', compact(['testreports', 'organization']));
+        return $pdf->setPaper('A4', 'landscape')->stream("test-report-list-" . now() . ".pdf");
     }
 }

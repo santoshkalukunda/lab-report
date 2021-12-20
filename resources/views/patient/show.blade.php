@@ -47,9 +47,9 @@
                                         "></option>
                                     @endforeach
                                   </select>
-                                    @if ($errors->has('name'))
+                                    @if ($errors->has('test_id'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('name') }}</strong>
+                                            <strong>{{ $errors->first('test_id') }}</strong>
                                         </span>
                                     @endif
                                 </div>
