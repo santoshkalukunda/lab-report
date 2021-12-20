@@ -14,6 +14,8 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filterModal">
                         Filter
                     </button>
+                    <button class="btn btn-danger"  onclick="document.getElementById('pdf-patient').submit();">Export To PDF </button>
+                    @include('patient.pdf-form')
                     @include('patient.filter-modal')
                 </div>
 
@@ -64,7 +66,6 @@
                     </div>
                 </div>
             </div>
-            {{ $patients->links() }}
         </div>
     </div>
 @endsection

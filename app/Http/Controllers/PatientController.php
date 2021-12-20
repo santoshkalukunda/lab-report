@@ -19,7 +19,8 @@ class PatientController extends Controller
     public function index()
     {
         $patients = Patient::latest()->simplePaginate(10);
-        return view('patient.index', compact('patients'));
+        $users= User::get(['id','name']);
+        return view('patient.index', compact('patients','users'));
     }
 
     /**

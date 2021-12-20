@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FilterController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PDFController;
@@ -42,5 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('testreports/{patient}', [TestreportController::class,'store'])->name('testreports.store');
 	Route::delete('testreports/{testreport}', [TestreportController::class,'destroy'])->name('testreports.destroy');
 	Route::get('test-report-pdf/{patient}', [PDFController::class,'testReport'])->name('test-reports-pdf');
+	Route::get('filter-patients', [FilterController::class,'filterPatient'])->name('filter-patient');
+	Route::get('pdf-patients', [FilterController::class,'PDFPatient'])->name('pdf-patient');
 });
 

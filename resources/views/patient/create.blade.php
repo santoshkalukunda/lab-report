@@ -23,7 +23,7 @@
                                             <input type="date" name="date" id="input-date"
                                                 class="form-control form-control-alternative{{ $errors->has('date') ? ' is-invalid' : '' }}"
                                                 placeholder="{{ __('Date') }}"
-                                                value="{{old('email',date('Y-m-d')) }}" required>
+                                                value="{{old('date',date('Y-m-d')) }}" required>
 
                                             @if ($errors->has('date'))
                                                 <span class="invalid-feedback" role="alert">
