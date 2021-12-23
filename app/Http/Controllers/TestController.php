@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Test;
 use App\Http\Requests\StoreTestRequest;
 use App\Http\Requests\UpdateTestRequest;
+use App\Models\Category;
 
 class TestController extends Controller
 {
@@ -16,7 +17,8 @@ class TestController extends Controller
     public function index()
     {
         $tests = Test::latest()->get();
-        return view('test.index',compact('tests'));
+        $categories = Category::latest()->get();
+        return view('test.index',compact('tests','categories'));
     }
 
     /**
@@ -35,10 +37,10 @@ class TestController extends Controller
      * @param  \App\Http\Requests\StoreTestRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTestRequest $request)
+    public function store(StoreTestRequest $request, Category $category)
     {
-        Test::create($request->validated());
-
+        //Test::create($request->validated());
+        $category->test()->create($request->validated());
         return redirect()->back()->with('success',"Test Created");
     }
 

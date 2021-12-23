@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Patient;
 use App\Http\Requests\StorepatientRequest;
 use App\Http\Requests\UpdatepatientRequest;
+use App\Models\Category;
 use App\Models\Test;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -54,9 +55,10 @@ class PatientController extends Controller
      */
     public function show(patient $patient)
     {
-        $tests = Test::get();
         $testreports = $patient->testreport()->get();
-        return view('patient.show', compact('patient', 'tests','testreports'));
+        $tests = Test::get();
+        $categories = Category::get();
+        return view('patient.show', compact('patient', 'tests','testreports','categories'));
     }
 
     /**

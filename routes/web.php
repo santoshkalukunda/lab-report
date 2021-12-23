@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PatientController;
@@ -38,7 +39,15 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 	Route::resource('organizations', OrganizationController::class)->only(['index', 'store']); 
 	Route::resource('patients', PatientController::class); 
-	Route::resource('tests', TestController::class); 
+	Route::resource('categories', CategoryController::class); 
+	
+	Route::get('tests', [TestController::class, 'index'])->name('tests.index'); 
+	Route::post('tests/{category}', [TestController::class, 'store'])->name('tests.store'); 
+	Route::get('tests/{test}/edit', [TestController::class, 'edit'])->name('tests.edit'); 
+	Route::get('tests/{test}/show', [TestController::class, 'show'])->name('tests.show'); 
+	Route::put('tests/{test}', [TestController::class, 'update'])->name('tests.update'); 
+	Route::delete('tests/{test}', [TestController::class, 'destroy'])->name('tests.destroy'); 
+
 	Route::get('testreports', [TestreportController::class,'index'])->name('testreports.index');
 	Route::post('testreports/{patient}', [TestreportController::class,'store'])->name('testreports.store');
 	Route::delete('testreports/{testreport}', [TestreportController::class,'destroy'])->name('testreports.destroy');

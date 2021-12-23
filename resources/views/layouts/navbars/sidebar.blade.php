@@ -80,6 +80,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('categories.index') }}">
+                      <i class="fa fa-code-branch text-default"></i>
+                      <span class="nav-link-text">Test Categories</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('tests.index') }}">
                       <i class="fa fa-microscope text-default"></i>
                       <span class="nav-link-text">Test</span>
@@ -92,7 +98,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('register') }}">
-                        <i class="ni ni-circle-08 text-pink"></i> {{ __('Register') }}
+                        <i class="ni ni-circle-08 text-pink"></i> {{ __('User Register') }}
                     </a>
                 </li>
             </ul>

@@ -31,11 +31,13 @@
             border-collapse: collapse;
             width: 100%;
             font-size: 11px;
+            border: 1px solid #dddddd;
         }
 
         td,
         th {
-            border: 1px solid #dddddd;
+            border-top: 1px solid #dddddd;
+            border-bottom: 1px solid #dddddd;
             text-align: left;
             padding: 4px;
         }
@@ -63,7 +65,7 @@
         }
 
         .org-name {
-           color: rgb(177, 8, 8);
+            color: rgb(177, 8, 8);
         }
 
     </style>
@@ -81,7 +83,7 @@
             <div class="text-center org-name">{{ $organization->phone }}</div>
             <div class="text-center org-name">{{ $organization->email }}</div>
             <div class="text-center org-name">{{ $organization->url }}</div>
-            <div class="text-center" style="font-size: 20px;">Lab Report</div>
+            <div class="text-center" style="font-size: 16px;"><u>Medical Laboratory Report</u></div>
 
 
         </div>
@@ -123,26 +125,43 @@
         $i = 1;
     @endphp
     <div class="row">
+        @php
+            $i = 1;
+            $j = 0;
+        @endphp
         <div class="table-responsive">
             <table class="table table-hover">
                 <tr>
-                    <th>SN</th>
-                    <th>Test Name</th>
+                    <th>Test</th>
                     <th>Result</th>
                     <th>Unit</th>
                     <th>Referrence Range</th>
                     <th>Method</th>
                 </tr>
-                @foreach ($testreports as $testreport)
-                    <tr>
-                        <td>{{ $i++ }}</td>
-                        <td>{{ $testreport->test->name }}</td>
-                        <td>{{ $testreport->result }}</td>
-                        <td>{!! $testreport->test->unit !!}</td>
-                        <td>{{ $testreport->test->range }}</td>
-                        <td>{{ $testreport->remarks }}</td>
-                    </tr>
+                @foreach ($tests as $test)
+                    @foreach ($testreports as $testreport)
+                        @if ($test->id == $testreport->test_id)
+                            @if ($j < $test->category->id)
+                                <tr>
+                                    <td colspan="5" class="text-center"><b><u class="Capitalization">{{ $test->category->name }}
+                                                Report</u></b></td>
+                                </tr>
+                                @php
+                                    $j = $test->category->id;
+                                @endphp
+                            @endif
+                            <tr>
+                                <td>{{ $testreport->test->name }}</td>
+                                <td>{{ $testreport->result }}</td>
+                                <td>{!! $testreport->test->unit !!}</td>
+                                <td>{{ $testreport->test->range }}</td>
+                                <td>{{ $testreport->remarks }}</td>
+                            </tr>
+                        @endif
+
+                    @endforeach
                 @endforeach
+
             </table>
         </div>
         <div class="col-md-12 text-right" style="margin-top: 20px; text-transform: capitalize">
