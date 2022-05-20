@@ -15,7 +15,7 @@ class TestReportCreate extends Component
     public $message;
   
  
-    public function mount(Patient $patient,)
+    public function mount(Patient $patient)
     {
         $this->patient = $patient;
         $this->tests = Test::get();
