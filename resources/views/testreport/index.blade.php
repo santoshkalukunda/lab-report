@@ -10,7 +10,6 @@
         <div class="row">
             <div class="col-xl-12 px-0">
                 <div class="m-2">
-                    <a class="btn btn-success" href="{{ route('patients.create') }}">New</a>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filterModal">
                         Filter
                     </button>
