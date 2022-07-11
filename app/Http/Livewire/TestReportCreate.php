@@ -12,7 +12,7 @@ class TestReportCreate extends Component
     public $patient;
     public $categoris;
     public $tests;
-    public $message;
+    public $categoryId;
   
  
     public function mount(Patient $patient)

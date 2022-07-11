@@ -51,7 +51,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('testreports', [TestreportController::class,'index'])->name('testreports.index');
 	Route::post('testreports/{patient}', [TestreportController::class,'store'])->name('testreports.store');
 	Route::delete('testreports/{testreport}', [TestreportController::class,'destroy'])->name('testreports.destroy');
+	
 	Route::get('test-report-pdf/{patient}', [PDFController::class,'testReport'])->name('test-reports-pdf');
+	Route::get('test-bill-pdf/{patient}', [PDFController::class,'billView'])->name('test-bill-pdf');
+
 	Route::get('search-patients', [FilterController::class,'filterPatient'])->name('filter-patient');
 	Route::get('pdf-patients', [FilterController::class,'PDFPatient'])->name('pdf-patient');
 	Route::get('search-test-report', [FilterController::class,'filterTestReport'])->name('filter-test-report');

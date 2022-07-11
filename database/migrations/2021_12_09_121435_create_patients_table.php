@@ -24,6 +24,7 @@ class CreatePatientsTable extends Migration
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('referred')->nullable();
+            $table->string('remarks')->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });

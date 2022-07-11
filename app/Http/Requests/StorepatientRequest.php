@@ -32,7 +32,8 @@ class StorepatientRequest extends FormRequest
             "address" => "required",
             "phone" => "nullable",
             "email" => "nullable",
-            "referred" => "nullable"
+            "referred" => "nullable",
+            "remarks" => "nullable"
         ];
     }
 }

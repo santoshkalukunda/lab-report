@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-xl-3">
                 <label class="form-control-label" for="input-gender">{{ __('Test Category') }}</label>
-                <select name="category_id" wire:model="message"
+                <select name="category_id" wire:model="categoryId"
                     class="form-control @error('test_id') is-invalid @enderror" required>
                     <option value="" selected>Select Category</option>
                     @foreach ($categories as $category)
@@ -22,11 +22,11 @@
             <div class="col-xl-3">
                 <label class="form-control-label" for="input-gender">{{ __('Test name') }}</label>
                 <select name="test_id" class="form-control @error('test_id') is-invalid @enderror" required>
-                    @if (!$message)
+                    @if (!$categoryId)
                         <option value="" selected>Select Test</option>
                     @else
                         @foreach ($tests as $test)
-                            @if ($message == $test->category_id)   
+                            @if ($categoryId == $test->category_id)   
                             <option value="{{ $test->id }}">
                                 {{ $test->name }}
                             </option>

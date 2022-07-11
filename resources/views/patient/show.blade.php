@@ -28,7 +28,13 @@
                     </div>
                     <div class="text-right">
                         <a href="{{ route('test-reports-pdf', $patient) }}" class="btn btn-sm btn-primary fa fa-print m-2"
-                            target="_blank"> Print</a>
+                            target="_blank"> 
+                            Print Report
+                        </a>
+                            <a href="{{ route('test-bill-pdf', $patient) }}" class="btn btn-sm btn-success fa fa-print m-2"
+                            target="_blank"> 
+                            Print Bill
+                        </a>
                     </div>
                     <div class="card  shadow">
                         <div class="card-body">

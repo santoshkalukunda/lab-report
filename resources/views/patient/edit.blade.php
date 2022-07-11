@@ -162,6 +162,13 @@
                                             @endif
                                         </div>
                                     </div>
+                                    <div class="col-xl-12">
+                                        <div class="form-group{{ $errors->has('remarks') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label"
+                                                for="">{{ __('Remarks') }}</label>
+                                            <textarea class="summernote" rows="6" type="text" name="remarks" placeholder="{{ __('Remarks') }}">{!!$patient->remarks !!}</textarea>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Update') }}</button>
@@ -174,3 +181,14 @@
         </div>
     </div>
 @endsection
+@push('js')
+    <script>
+        $('.summernote').summernote({
+            height: 100, //set editable area's height
+            codemirror: { // codemirror options
+                theme: 'paper'
+            }
+          
+        });
+    </script>
+@endpush

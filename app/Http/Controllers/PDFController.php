@@ -13,22 +13,54 @@ use Dompdf\Options;
 
 class PDFController extends Controller
 {
+
+    protected $organization;
+    protected $categories;
+    protected $tests;
+
+    public function __construct()
+    {
+        $this->organization = Organization::first();
+        $this->categories = Category::get();
+        $this->tests = Test::get();
+    }
+
     public function testReport(Patient $patient)
     {
-        $organization = Organization::first();
+        $organization = $this->organization;
+        $categories = $this->categories;
+        $tests = $this->tests;
         $testreports = $patient->testreport()->get();
-        $categories = Category::get();
-        $tests = Test::get();
-        $pdf = PDF::loadView('pdf.test-report-pdf', compact('testreports', 'organization', 'patient','categories','tests'));
+
+        $pdf = PDF::loadView('pdf.test-report-pdf', compact('testreports', 'organization', 'patient', 'categories', 'tests'));
         $pdf->getDomPDF()->setHttpContext(
             stream_context_create([
                 'ssl' => [
-                    'allow_self_signed'=> TRUE,
+                    'allow_self_signed' => TRUE,
                     'verify_peer' => FALSE,
                     'verify_peer_name' => FALSE,
                 ]
             ])
-        );    
-        return $pdf->setPaper('A4', 'portrait')->stream("report-" . now() . ".pdf");
+        );
+        return $pdf->setPaper('A4', 'portrait')->stream("report-".$patient->name."-". now() . ".pdf");
+    }
+    public function billView(Patient $patient)
+    {
+        
+        $organization = $this->organization;
+        $categories = $this->categories;
+        $tests = $this->tests;
+        $testreports = $patient->testreport()->get();
+        $pdf = PDF::loadView('pdf.bill-pdf', compact('testreports', 'organization', 'patient', 'categories', 'tests'));
+        $pdf->getDomPDF()->setHttpContext(
+            stream_context_create([
+                'ssl' => [
+                    'allow_self_signed' => TRUE,
+                    'verify_peer' => FALSE,
+                    'verify_peer_name' => FALSE,
+                ]
+            ])
+        );
+        return $pdf->setPaper('A4', 'portrait')->stream("bill-".$patient->name ."-". now() . ".pdf");
     }
 }
