@@ -7,6 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Test Report</title>
     <style>
+         body {
+            margin: 15px 60px;
+            font-size: 12px;
+        }
+
         .col-md-6 {
             float: left;
             width: 50%;
@@ -42,10 +47,7 @@
             padding: 4px;
         }
 
-        body {
-            margin: 15px 20px;
-            font-size: 12px;
-        }
+       
 
         .text-center {
             text-align: center;
@@ -75,13 +77,12 @@
     <div>
         <div class="row ">
             <div class="col-md-2" style="margin-top: 40px;">
-                <img src="{{ public_path('logo.jpg') }}" width="80px" height="60px">
+                <img src="{{$organization->logo ? asset('storage/'.$organization->logo) : asset('logo.jpg') }}" width="80px" height="80px">
             </div>
             <div class="text-center" style="font-size: 40px; color:rgb(13, 13, 196);"><b>H</b></div>
             <div class="text-center org-name" style="font-size: 20px;">{{ $organization->name }}</div>
             <div class="text-center org-name">{{ $organization->address }}</div>
-            <div class="text-center org-name">{{ $organization->phone }}</div>
-            <div class="text-center org-name">{{ $organization->email }}</div>
+            <div class="text-center org-name">{{ $organization->phone }}, {{ $organization->email }}</div>
             <div class="text-center org-name">{{ $organization->url }}</div>
             <div class="text-center" style="font-size: 16px;"><u>Medical Laboratory Report</u></div>
 
@@ -152,7 +153,7 @@
                             @endif
                             <tr>
                                 <td>{{ $testreport->test->name }}</td>
-                                <td>{{ $testreport->result }}</td>
+                                <td><div style="{{$testreport->status == true ? "font-weight: bold; text-decoration-line: underline;" : ""}}">{{ $testreport->result }}</div></td>
                                 <td>{!! $testreport->test->unit !!}</td>
                                 <td>{{ $testreport->test->range }}</td>
                                 <td>{{ $testreport->remarks }}</td>

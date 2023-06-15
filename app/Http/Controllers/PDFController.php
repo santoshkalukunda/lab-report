@@ -32,6 +32,9 @@ class PDFController extends Controller
         $tests = $this->tests;
         $testreports = $patient->testreport()->get();
 
+        return view('pdf.test-report-pdf', compact('testreports', 'organization', 'patient', 'categories', 'tests'));
+
+        //pdf view
         $pdf = PDF::loadView('pdf.test-report-pdf', compact('testreports', 'organization', 'patient', 'categories', 'tests'));
         $pdf->getDomPDF()->setHttpContext(
             stream_context_create([
@@ -51,6 +54,8 @@ class PDFController extends Controller
         $categories = $this->categories;
         $tests = $this->tests;
         $testreports = $patient->testreport()->get();
+        return view('pdf.bill-pdf',compact('testreports', 'organization', 'patient', 'categories', 'tests'));
+
         $pdf = PDF::loadView('pdf.bill-pdf', compact('testreports', 'organization', 'patient', 'categories', 'tests'));
         $pdf->getDomPDF()->setHttpContext(
             stream_context_create([
