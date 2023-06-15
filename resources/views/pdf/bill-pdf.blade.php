@@ -43,7 +43,7 @@
         }
 
         body {
-            margin: 15px 20px;
+            margin: 15px 50px;
             font-size: 12px;
         }
 
@@ -74,13 +74,12 @@
     <div>
         <div class="row ">
             <div class="col-md-2" style="margin-top: 40px;">
-                <img src="{{ public_path('logo.jpg') }}" width="80px" height="60px">
+                <img src="{{$organization->logo ? asset('storage/'.$organization->logo) : asset('logo.jpg') }}" width="80px" height="80px">
             </div>
             <div class="text-center" style="font-size: 40px; color:rgb(13, 13, 196);"><b>H</b></div>
             <div class="text-center org-name" style="font-size: 20px;">{{ $organization->name }}</div>
             <div class="text-center org-name">{{ $organization->address }}</div>
-            <div class="text-center org-name">{{ $organization->phone }}</div>
-            <div class="text-center org-name">{{ $organization->email }}</div>
+            <div class="text-center org-name">{{ $organization->phone }}, {{ $organization->email }}</div>
             <div class="text-center org-name">{{ $organization->url }}</div>
             <div class="text-center" style="font-size: 16px;"><u>Medical Laboratory Bill</u></div>
 
