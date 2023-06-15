@@ -13,7 +13,7 @@ class UpdateTestreportRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class UpdateTestreportRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "test_id" => "required",
+            "result" => "required",
+            "remarks" => "nullable",
+            "status" => 'required',
         ];
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Requests\StorepatientRequest;
 use App\Http\Requests\UpdatepatientRequest;
 use App\Models\Category;
 use App\Models\Test;
+use App\Models\Testreport;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,12 +54,15 @@ class PatientController extends Controller
      * @param  \App\Models\patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function show(patient $patient)
+    public function show(patient $patient, Testreport $testreport = null)
     {
+        if (!$testreport) {
+            $testreport = new Testreport();
+        }
         $testreports = $patient->testreport()->get();
         $tests = Test::get();
         $categories = Category::get();
-        return view('patient.show', compact('patient', 'tests','testreports','categories'));
+        return view('patient.show', compact('patient', 'tests','testreports','categories','testreport'));
     }
 
     /**

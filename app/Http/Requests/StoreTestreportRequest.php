@@ -27,6 +27,7 @@ class StoreTestreportRequest extends FormRequest
             "test_id" => "required",
             "result" => "required",
             "remarks" => "nullable",
+            "status" => 'required',
         ];
     }
 }

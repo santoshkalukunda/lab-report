@@ -67,7 +67,7 @@
                                                 @endif
                                                 <tr>
                                                     <td>{{ $testreport->test->name }}</td>
-                                                    <td>{{ $testreport->result }}</td>
+                                                    <td> <div style="{{$testreport->status == true ? "font-weight: bold; text-decoration-line: underline;" : ""}}">{{ $testreport->result }}</div></td>
                                                     <td>{!! $testreport->test->unit !!}</td>
                                                     <td>{{ $testreport->test->range }}</td>
                                                     <td>{{ $testreport->remarks }}</td>

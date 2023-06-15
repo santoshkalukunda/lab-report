@@ -5,12 +5,13 @@ namespace App\Http\Livewire;
 use App\Models\Category;
 use App\Models\Patient;
 use App\Models\Test;
+use App\Models\Testreport;
 use Livewire\Component;
 
 class TestReportCreate extends Component
 {
     public $patient;
-    public $categoris;
+    public $categories;
     public $tests;
     public $categoryId;
   
@@ -20,11 +21,10 @@ class TestReportCreate extends Component
         $this->patient = $patient;
         $this->tests = Test::get();
         $this->categories = Category::get();
-
     }
     public function render()
     {
         
-        return view('livewire.test-report-create',['patient'=> $this->patient, 'categories' =>  $this->categories, 'tests' => $this->tests]);
+        return view('livewire.test-report-create');
     }
 }

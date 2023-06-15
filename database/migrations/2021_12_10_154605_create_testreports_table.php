@@ -19,6 +19,7 @@ class CreateTestreportsTable extends Migration
             $table->string('result');
             $table->string('remarks')->nullable();
             $table->foreignId('patient_id')->constrained('patients')->onDelete('cascade');
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }

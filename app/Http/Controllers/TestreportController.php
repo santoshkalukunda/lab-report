@@ -17,7 +17,6 @@ class TestreportController extends Controller
      */
     public function index()
     {
-
         $testreports = Testreport::latest()->simplePaginate(15);
         $tests = Test::get();
         $patients = Patient::get();
@@ -42,11 +41,7 @@ class TestreportController extends Controller
      */
     public function store(StoreTestreportRequest $request, Patient $patient)
     {
-        $patient->testreport()->create([
-            "test_id" => $request->test_id,
-            "result" => $request->result,
-            "remarks" => $request->remarks,
-        ]);
+        $patient->testreport()->create($request->validated());
         return redirect()->back()->with('success','Test Added');
     }
 

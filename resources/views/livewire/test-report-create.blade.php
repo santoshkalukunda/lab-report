@@ -2,11 +2,11 @@
     <form action="{{ route('testreports.store', $patient) }}" method="post">
         @csrf
         <div class="row">
-            <div class="col-xl-3">
+            <div class="col-xl-2">
                 <label class="form-control-label" for="input-gender">{{ __('Test Category') }}</label>
                 <select name="category_id" wire:model="categoryId"
                     class="form-control @error('test_id') is-invalid @enderror" required>
-                    <option value="" selected>Select Category</option>
+                    <option value="">Select Category</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">
                             {{ $category->name }}
@@ -26,10 +26,10 @@
                         <option value="" selected>Select Test</option>
                     @else
                         @foreach ($tests as $test)
-                            @if ($categoryId == $test->category_id)   
-                            <option value="{{ $test->id }}">
-                                {{ $test->name }}
-                            </option>
+                            @if ($categoryId == $test->category_id)
+                                <option value="{{ $test->id }}">
+                                    {{ $test->name }}
+                                </option>
                             @endif
                         @endforeach
                     @endif
@@ -56,6 +56,13 @@
                 </div>
             </div>
             <div class="col-xl-2">
+                <label class="form-control-label" for="status">{{ __('Status') }}</label>
+                <select class="form-control" name="status" aria-label="Default select example" id="status">
+                    <option value="0">Normal</option>
+                    <option value="1">Detected</option>
+                </select>
+            </div>
+            <div class="col-xl-2">
                 <div class="form-group{{ $errors->has('remarks') ? ' has-danger' : '' }}">
                     <label class="form-control-label" for="input-remarks">{{ __('Method') }}</label>
                     <input type="text" name="remarks" id="input-remarks"
@@ -69,7 +76,7 @@
                     @endif
                 </div>
             </div>
-            <div class="col-xl-2 mt-2">
+            <div class="col-xl-1 mt-2">
                 <button type="submit" class="btn btn-success mt-4">{{ __('Add') }}</button>
             </div>
         </div>
