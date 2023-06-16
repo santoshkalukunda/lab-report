@@ -8,7 +8,7 @@
     <title>Test Report</title>
     <style>
          body {
-            margin: 15px 60px;
+            margin: 40px 60px;
             font-size: 12px;
         }
 
@@ -79,11 +79,12 @@
             <div class="col-md-2" style="margin-top: 40px;">
                 <img src="{{$organization->logo ? asset('storage/'.$organization->logo) : asset('logo.jpg') }}" width="80px" height="80px">
             </div>
-            <div class="text-center" style="font-size: 40px; color:rgb(13, 13, 196);"><b>H</b></div>
+            {{-- <div class="text-center" style="font-size: 40px; color:rgb(13, 13, 196);"><b>H</b></div> --}}
             <div class="text-center org-name" style="font-size: 20px;">{{ $organization->name }}</div>
             <div class="text-center org-name">{{ $organization->address }}</div>
             <div class="text-center org-name">{{ $organization->phone }}, {{ $organization->email }}</div>
             <div class="text-center org-name">{{ $organization->url }}</div>
+            <div class="text-center org-name">{{ $organization->pan_vat_type }} : {{ $organization->pan_vat_number }}</div>
             <div class="text-center" style="font-size: 16px;"><u>Medical Laboratory Report</u></div>
 
 
@@ -168,6 +169,7 @@
         <div class="col-md-12 text-right" style="margin-top: 20px; text-transform: capitalize">
             <div>.....................................</div>
             {{ $patient->user->name }}
+            <div>{{ $patient->user->council_no }}</div>
             <div>Performed By</div>
         </div>
     </div>

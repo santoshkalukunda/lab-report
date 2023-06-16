@@ -70,6 +70,21 @@
                                         type="password" name="password_confirmation" required>
                                 </div>
                             </div>
+                            <div class="form-group{{ $errors->has('council_no') ? ' has-danger' : '' }}">
+                                <div class="input-group input-group-alternative mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                                    </div>
+                                    <input class="form-control{{ $errors->has('council_no') ? ' is-invalid' : '' }}"
+                                        placeholder="{{ __('Medical Council No.') }}" type="text" name="council_no"
+                                        value="{{ old('council_no') }}" required autofocus>
+                                </div>
+                                @if ($errors->has('council_no'))
+                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                        <strong>{{ $errors->first('council_no') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary mt-4">{{ __('Create account') }}</button>
                             </div>

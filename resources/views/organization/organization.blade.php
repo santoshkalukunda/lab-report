@@ -2,8 +2,7 @@
 
 @section('content')
     @include('users.partials.header', [
-    'title' => __('Organization Profile'),
-
+        'title' => __('Organization Profile'),
     ])
 
     <div class="container">
@@ -14,9 +13,10 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
-                               
-                                    <img src="{{asset('storage/'.$organization->logo) }}" class="border" style=" max-height:200px;">
-                                
+
+                                <img src="{{ asset('storage/' . $organization->logo) }}" class="border"
+                                    style=" max-height:200px;">
+
                             </div>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                         <form method="post" action="{{ route('organizations.store') }}" autocomplete="off"
                             enctype="multipart/form-data">
                             @csrf
-                           
+
 
                             <h6 class="heading-small text-muted mb-4">{{ __('Organization Profil') }}</h6>
 
@@ -45,7 +45,8 @@
                                 <div class="row">
                                     <div class="col-xl-6">
                                         <div class="form-group{{ $errors->has('logo') ? ' has-danger' : '' }}">
-                                            <label class="form-control-label" for="input-logo">{{ __('Logo') }} (it should be in .JPG only)</label>
+                                            <label class="form-control-label" for="input-logo">{{ __('Logo') }} (it
+                                                should be in .JPG only)</label>
                                             <input type="file" name="logo" id="input-logo"
                                                 class="form-control form-control-alternative{{ $errors->has('logo') ? ' is-invalid' : '' }}"
                                                 placeholder="{{ __('Logo') }}"
@@ -122,8 +123,8 @@
                                     <div class="col-xl-6">
                                         <div class="form-group{{ $errors->has('Web Site') ? ' has-danger' : '' }}">
                                             <label class="form-control-label"
-                                                for="input-web-site">{{ __('Web-site') }}</label>
-                                            <input type="text" name="url" id="input-web-site"
+                                                for="input-pan-vat">{{ __('Web-site') }}</label>
+                                            <input type="text" name="url" id="input-pan-vat"
                                                 class="form-control form-control-alternative{{ $errors->has('url') ? ' is-invalid' : '' }}"
                                                 placeholder="{{ __('Web-site') }}"
                                                 value="{{ old('url', $organization->url) }}">
@@ -131,6 +132,39 @@
                                             @if ($errors->has('url'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('url') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="form-group{{ $errors->has('pan_vat_type') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label"
+                                                for="input-pan_vat_type">{{ __('PAN/VAT Type') }}</label>
+                                            <select name="pan_vat_type"
+                                                class="form-control form-control-alternative custom-select {{ $errors->has('pan_vat_type') ? ' is-invalid' : '' }}"
+                                                required>
+                                                <option value="PAN" {{$organization->pan_vat_type == "PAN" ? "selected" : ""}} >PAN</option>
+                                                <option value="VAT" {{$organization->pan_vat_type == "VAT" ? "selected" : ""}}>VAT</option>
+                                            </select>
+                                            @if ($errors->has('pan_vat_type'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('pan_vat_type') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="form-group{{ $errors->has('Web Site') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label"
+                                                for="input-pan-vat">{{ __('PAN/VAT No.') }}</label>
+                                            <input type="number" name="pan_vat_number" id="input-pan-vat"
+                                                class="form-control form-control-alternative{{ $errors->has('pan_vat_number') ? ' is-invalid' : '' }}"
+                                                placeholder="{{ __('PAN/VAT No.') }}"
+                                                value="{{ old('pan_vat_number', $organization->pan_vat_number) }}">
+
+                                            @if ($errors->has('pan_vat_number'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('pan_vat_number') }}</strong>
                                                 </span>
                                             @endif
                                         </div>

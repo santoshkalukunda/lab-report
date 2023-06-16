@@ -24,24 +24,14 @@ class StoreOrganizationRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
-                'required', 'min:3'
-            ],
-            'email' => [
-                'required', 'email',
-            ],
-            'phone' => [
-                'required',
-            ],
-            'address' => [
-                'required',
-            ],
-            'url' => [
-                'sometimes',
-            ],
-            'logo' => [
-                'nullable',
-            ],
+            'name' => 'required | min:3',
+            'email' => 'required | email',
+            'phone' => 'required',
+            'address' => 'required',
+            'url' => 'sometimes',
+            'logo' => 'nullable',
+            'pan_vat_type' => 'nullable',
+            'pan_vat_number' => 'nullable',
         ];
     }
 }

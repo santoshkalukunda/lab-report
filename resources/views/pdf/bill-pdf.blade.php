@@ -81,6 +81,7 @@
             <div class="text-center org-name">{{ $organization->address }}</div>
             <div class="text-center org-name">{{ $organization->phone }}, {{ $organization->email }}</div>
             <div class="text-center org-name">{{ $organization->url }}</div>
+            <div class="text-center org-name">{{ $organization->pan_vat_type }} : {{ $organization->pan_vat_number }}</div>
             <div class="text-center" style="font-size: 16px;"><u>Medical Laboratory Bill</u></div>
 
 
