@@ -65,7 +65,6 @@
         .org-name {
             color: rgb(177, 8, 8);
         }
-
     </style>
 </head>
 
@@ -81,6 +80,10 @@
             <div class="text-center org-name">{{ $organization->phone }}</div>
             <div class="text-center org-name">{{ $organization->email }}</div>
             <div class="text-center org-name">{{ $organization->url }}</div>
+            <div class="text-center org-name">{{ $organization->url }}</div>
+            <div class="text-center org-name">{{ $organization->pan_vat_type }} : {{ $organization->pan_vat_number }}
+        </div>
+
             <div class="text-center" style="font-size: 20px;">Patient List</div>
         </div>
     </div>
@@ -104,7 +107,7 @@
                 </tr>
                 @foreach ($patients as $patient)
                     <tr>
-                        <td>{{$i++}}</td>
+                        <td>{{ $i++ }}</td>
                         <td>{{ $patient->date }}</td>
                         <td>{{ $patient->name }}</td>
                         <td>{{ $patient->address }}</td>

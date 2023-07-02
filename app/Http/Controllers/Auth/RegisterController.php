@@ -38,7 +38,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['role:super-admin']);
     }
 
     /**
@@ -53,8 +53,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'council_no' => ['nullable', 'string',],
-
+            'council_no' => ['nullable', 'string'],
+            'role' => ['required'],
         ]);
     }
 
@@ -66,11 +66,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'council_no' => $data['council_no'],
         ]);
+
+        $user->syncRoles($data['role']);
+        return $user;
     }
 }

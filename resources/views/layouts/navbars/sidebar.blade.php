@@ -97,8 +97,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">
-                        <i class="ni ni-circle-08 text-pink"></i> {{ __('User Register') }}
+                    <a class="nav-link" href="{{ route('users.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i> {{ __('Users') }}
                     </a>
                 </li>
             </ul>
