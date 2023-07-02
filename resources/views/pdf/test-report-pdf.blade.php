@@ -170,7 +170,7 @@
             <div>.....................................</div>
             {{ $patient->user->name }}
             <div>{{ $patient->user->council_no }}</div>
-            <div>Performed By</div>
+            <div>Performed By </div>
         </div>
     </div>
 </body>
