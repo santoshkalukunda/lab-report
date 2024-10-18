@@ -13,13 +13,74 @@
                         <div class="table-responsive">
                             <table class="table table-hover table-sm">
                                 <tr>
-                                    <th>Test Name</th>
+                                    <th>Name</th>
                                     <th>Referrence Range</th>
                                     <th>Unit</th>
                                     <th>Rate Rs.</th>
+                                    <th>Parent</th>
                                     <th colspan="2">Action</th>
                                 </tr>
-                                @foreach ($categories as $category)
+                                @forelse($categories as $firstLevelCategory)
+                                    @include('test.category-table-row', [
+                                        'category' => $firstLevelCategory,
+                                        'level' => 1,
+                                    ])
+
+                                    {{-- Second level --}}
+                                    @foreach ($firstLevelCategory->childCategories as $secondLevelCategory)
+                                        @include('test.category-table-row', [
+                                            'category' => $secondLevelCategory,
+                                            'level' => 2,
+                                            'parentCategoryName' => $firstLevelCategory->name,
+                                        ])
+                                        {{-- @dd($secondLevelCategory->test) --}}
+                                        @php
+                                            $tests = $secondLevelCategory
+                                                ->test()
+                                                ->with(['childTests.childTests'])
+                                                ->where('parent_id', null)
+                                                ->orderBy('name')
+                                                ->get();
+                                            $category = $secondLevelCategory;
+
+                                        @endphp
+                                        @if ($tests)
+                                            @forelse($tests as $firstLevelTest)
+                                                @include('test.table-row', [
+                                                    'test' => $firstLevelTest,
+                                                    'level' => 1,
+                                                ])
+
+                                                {{-- Second level --}}
+                                                @foreach ($firstLevelTest->childtests as $secondLevelTest)
+                                                    @include('test.table-row', [
+                                                        'test' => $secondLevelTest,
+                                                        'level' => 2,
+                                                        'parentTestName' => $firstLevelTest->name,
+                                                    ])
+
+                                                    {{-- Third level --}}
+                                                    @foreach ($secondLevelTest->childtests as $thirdLevelTest)
+                                                        @include('test.table-row', [
+                                                            'test' => $thirdLevelTest,
+                                                            'level' => 3,
+                                                            'parentTestName' => $secondLevelTest->name,
+                                                        ])
+                                                    @endforeach
+                                                @endforeach
+                                            @empty
+                                                <tr>
+                                                    <td colspan="42" class="font-italic text-center">No Record Found</td>
+                                                </tr>
+                                            @endforelse
+                                        @endif
+                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="42" class="font-italic text-center">No Record Found</td>
+                                        </tr>
+                                    @endforelse
+                                    {{-- @foreach ($categories as $category)
                                     <tr class="table-light">
                                         <td colspan="4" class="text-center"><a
                                                 href="{{ route('categories.show', $category) }}">{{ $category->name }}</a>
@@ -54,12 +115,12 @@
                                             </tr>
                                         @endif
                                     @endforeach
-                                @endforeach
-                            </table>
+                                @endforeach --}}
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-@endsection
+    @endsection

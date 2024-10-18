@@ -17,8 +17,9 @@ class TestController extends Controller
     public function index()
     {
         $tests = Test::latest()->get();
-        $categories = Category::latest()->get();
-        return view('test.index',compact('tests','categories'));
+        $categories = Category::with(['childCategories.childCategories','test'])->where('parent_id', null)
+        ->orderBy('name')->get();
+        return view('test.index', compact('tests', 'categories'));
     }
 
     /**
@@ -26,9 +27,18 @@ class TestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Category $category, Test $test = null)
     {
-        //
+        if (!$test) {
+            $test = new Test();
+        }
+        $tests = $category
+            ->test()
+            ->with(['childTests.childTests'])
+            ->where('parent_id', null)
+            ->orderBy('name')
+            ->get();
+        return view('test.create', compact('category', 'tests', 'test'));
     }
 
     /**
@@ -41,7 +51,7 @@ class TestController extends Controller
     {
         //Test::create($request->validated());
         $category->test()->create($request->validated());
-        return redirect()->back()->with('success',"Test Created");
+        return redirect()->back()->with('success', 'Test Created');
     }
 
     /**
@@ -61,9 +71,10 @@ class TestController extends Controller
      * @param  \App\Models\Test  $test
      * @return \Illuminate\Http\Response
      */
-    public function edit(Test $test)
+    public function edit(Category $category, Test $test)
     {
-        return view('test.edit',compact('test'));
+        return $this->create($category, $test);
+        // return view('test.edit', compact('test'));
     }
 
     /**
@@ -76,10 +87,10 @@ class TestController extends Controller
     public function update(UpdateTestRequest $request, Test $test)
     {
         $test = $test->update($request->validated());
-        if($test){
-            return redirect()->route('tests.index')->with('success','Test updated');
-        }else{
-            return redirect()->back()->with('error','Test updated failed');
+        if ($test) {
+            return redirect()->route('tests.index')->with('success', 'Test updated');
+        } else {
+            return redirect()->back()->with('error', 'Test updated failed');
         }
     }
 
@@ -92,6 +103,6 @@ class TestController extends Controller
     public function destroy(Test $test)
     {
         $test->delete();
-        return redirect()->back()->with('success',"Test Deleted");
+        return redirect()->back()->with('success', 'Test Deleted');
     }
 }

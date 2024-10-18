@@ -43,12 +43,12 @@
                                                 @if ($category->parentCategory && $category->parentCategory->id == $firstLevelCategory->id) selected @endif>
                                                 {{ $firstLevelCategory->name }}
                                             </option>
-                                            @foreach ($firstLevelCategory->childcategories as $secondLevelCat)
+                                            {{-- @foreach ($firstLevelCategory->childcategories as $secondLevelCat)
                                                 <option value="{{ $secondLevelCat->id }}"
                                                     @if ($category->parentCategory && $category->parentCategory->id == $secondLevelCat->id) selected @endif>
                                                     -- {{ $secondLevelCat->name }}
                                                 </option>
-                                            @endforeach
+                                            @endforeach --}}
                                         @endforeach
                                     </select>
                                     <div class="invalid-feedback">

@@ -27,7 +27,9 @@ class UpdateTestRequest extends FormRequest
             "name" => "required",
             "range" => "nullable",
             "unit" => "nullable",
-            "rate" => "nullable|min:0"
+            "rate" => "nullable|min:0",
+            "parent_id" => 'nullable'
+
         ];
     }
 }

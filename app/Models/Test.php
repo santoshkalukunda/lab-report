@@ -10,6 +10,16 @@ class Test extends Model
     use HasFactory;
     protected $guarded=[];
     
+    public function parentTest()
+    {
+        return $this->belongsTo(Test::class, 'parent_id');
+    }
+
+    public function childTests()
+    {
+        return $this->hasMany(Test::class, 'parent_id');
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');

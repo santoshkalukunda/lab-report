@@ -53,8 +53,10 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-       $tests = $category->test()->get();
-        return view('category.show',compact('category','tests'));
+        return redirect()->route('tests.create', $category);
+    //    $tests = $category->test()->with(['childTests.childTests'])->where('parent_id', null)
+    //    ->orderBy('name')->get();
+    //     return view('category.show',compact('category','tests'));
     }
 
     /**
