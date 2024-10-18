@@ -13,10 +13,14 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Category $category)
     {
-        $categories= Category::get();
-        return view('category.index',compact('categories'));
+        if (!$category) {
+            $category = new Category();
+        }
+        $categories= Category::with(['childCategories.childCategories'])->where('parent_id', null)
+        ->orderBy('name')->get();
+        return view('category.index',compact('categories','category'));
     }
 
     /**
@@ -61,7 +65,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('category.edit',compact('category'));
+        return $this->index($category);
+        // return view('category.edit',compact('category'));
     }
 
     /**
@@ -74,7 +79,7 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         $category->update($request->validated());
-        return redirect()->back()->with('success',"Test Category updated");
+        return redirect()->route('categories.index')->with('success',"Test Category updated");
 
     }
 
