@@ -19,8 +19,7 @@ class OrganizationSeeder extends Seeder
             'phone' => "098788633",
             'address' => 'Butwal , nepal',
             'email' => 'admin@gamil.com',
-            'url' => 'lab.kalukunda.com.np',
-            'logo' => 'mic.png',  
+            'url' => 'lab.kalukunda.com.np', 
             'created_at' => now(),
             'updated_at' => now()
         ]);

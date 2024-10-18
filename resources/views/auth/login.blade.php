@@ -5,11 +5,13 @@
         <div class="row justify-content-center">
             <div class="col-md-4 my-5">
                 <div class=" text-center">
-                    <h3>Geruwa Community Health Center</h3>
-                    <h4>Geruwa-5, Bardiya</h4>
+                    <div></div>
+                    <h3>{{$organization->name}}</h3>
+                    <h4>{{$organization->address}}</h4>
+                    {{$organization->logo}}
                     <h5>Lab Report System</h5>
                 </div>
-                <img class="img img-center" src=" {{asset('microscope.jpg')}}" alt="Logo" height="100px" width="100px">
+                <img class="img img-center" src=" {{$organization->logo ? asset('storage/' . $organization->logo) : asset('microscope.jpg')}}" alt="Logo" height="100px" width="100px">
                 <div>
                     <div >
                         <form method="POST" action="{{ route('login') }}">

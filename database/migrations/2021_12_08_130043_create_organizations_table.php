@@ -20,7 +20,7 @@ class CreateOrganizationsTable extends Migration
             $table->string('phone');
             $table->string('email')->nullable();
             $table->string('url')->nullable();
-            $table->string('logo');
+            $table->string('logo')->nullable();
             $table->string('pan_vat_type')->nullable();
             $table->string('pan_vat_number')->nullable();
             $table->timestamps();
