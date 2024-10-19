@@ -20,7 +20,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = Patient::latest()->simplePaginate(10);
+        $patients = Patient::latest()->paginate(5);
         $users= User::get(['id','name']);
         return view('patient.index', compact('patients','users'));
     }
@@ -56,13 +56,14 @@ class PatientController extends Controller
      */
     public function show(patient $patient, Testreport $testreport = null)
     {
-        if (!$testreport) {
-            $testreport = new Testreport();
-        }
-        $testreports = $patient->testreport()->get();
-        $tests = Test::get();
-        $categories = Category::get();
-        return view('patient.show', compact('patient', 'tests','testreports','categories','testreport'));
+        return redirect()->route('reports.patient',$patient);
+        // if (!$testreport) {
+        //     $testreport = new Testreport();
+        // }
+        // $testreports = $patient->testreport()->get();
+        // $tests = Test::get();
+        // $categories = Category::get();
+        // return view('patient.show', compact('patient', 'tests','testreports','categories','testreport'));
     }
 
     /**

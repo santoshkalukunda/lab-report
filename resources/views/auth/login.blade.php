@@ -8,8 +8,7 @@
                     <div></div>
                     <h3>{{$organization->name}}</h3>
                     <h4>{{$organization->address}}</h4>
-                    {{$organization->logo}}
-                    <h5>Lab Report System</h5>
+                    <h5>Medical Laboratory Report System</h5>
                 </div>
                 <img class="img img-center" src=" {{$organization->logo ? asset('storage/' . $organization->logo) : asset('microscope.jpg')}}" alt="Logo" height="100px" width="100px">
                 <div>

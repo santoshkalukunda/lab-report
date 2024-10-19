@@ -9,7 +9,7 @@ class Testreport extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    
+
     public function patient()
     {
         return $this->belongsTo(Patient::class, 'patient_id');
@@ -17,5 +17,13 @@ class Testreport extends Model
     public function test()
     {
         return $this->belongsTo(Test::class, 'test_id');
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+    public function subCategory()
+    {
+        return $this->belongsTo(Category::class, 'sub_category_id');
     }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\FilterController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TestreportController;
 use App\Http\Controllers\UserController;
@@ -34,7 +35,7 @@ Auth::routes();
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 
 Route::group(['middleware' => ['role:super-admin']], function () {
-	Route::post('users/{user}/change-password', [UserController::class, 'changePassword'])->name('users.changePassword');
+    Route::post('users/{user}/change-password', [UserController::class, 'changePassword'])->name('users.changePassword');
     Route::resource('users', 'App\Http\Controllers\UserController');
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
@@ -50,6 +51,15 @@ Route::group(['middleware' => ['role:super-admin']], function () {
     // Route::get('tests/{test}/show', [TestController::class, 'show'])->name('tests.show');
     Route::put('tests/{test}', [TestController::class, 'update'])->name('tests.update');
     Route::delete('tests/{test}', [TestController::class, 'destroy'])->name('tests.destroy');
+
+    //reports
+    Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
+    Route::get('reports/patient/{patient}', [ReportController::class, 'patient'])->name('reports.patient');
+    Route::post('reports/patient/{patient}', [ReportController::class, 'store'])->name('reports.store');
+    Route::get('reports/patient/{patient}/create', [ReportController::class, 'create'])->name('reports.create');
+    Route::get('reports/{report}/edit', [ReportController::class, 'edit'])->name('reports.edit');
+    Route::put('reports/{report}', [ReportController::class, 'update'])->name('reports.update');
+    Route::delete('reports/{report}', [ReportController::class, 'destroy'])->name('reports.destroy');
 
     Route::get('testreports', [TestreportController::class, 'index'])->name('testreports.index');
     Route::post('testreports/{patient}', [TestreportController::class, 'store'])->name('testreports.store');

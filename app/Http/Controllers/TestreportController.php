@@ -17,7 +17,7 @@ class TestreportController extends Controller
      */
     public function index()
     {
-        $testreports = Testreport::latest()->simplePaginate(15);
+        $testreports = Testreport::latest()->paginate(15);
         $tests = Test::get();
         $patients = Patient::get();
         return view('testreport.index',compact('testreports','tests','patients'));

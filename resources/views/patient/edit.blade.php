@@ -30,7 +30,7 @@
                                             <input type="date" name="date" id="input-date"
                                                 class="form-control form-control-alternative{{ $errors->has('date') ? ' is-invalid' : '' }}"
                                                 placeholder="{{ __('Date') }}"
-                                                value="{{old('email',$patient->date) }}" required>
+                                                value="{{old('date',$patient->date) }}" required>
 
                                             @if ($errors->has('date'))
                                                 <span class="invalid-feedback" role="alert">
@@ -89,8 +89,8 @@
                                         <div class="form-group{{ $errors->has('in') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-in">{{ __('In') }}</label>
                                                 <select name="in" class="form-control form-control-alternative custom-select {{ $errors->has('in') ? ' is-invalid' : '' }}" required>
-                                                    <option {{$patient->gender == 'Y' ? 'selected' : ''}} value="Y">Year</option>
-                                                    <option {{$patient->gender == 'M' ? 'selected' : ''}} value="M">Month</option>
+                                                    <option {{$patient->in == 'Y' ? 'selected' : ''}} value="Y">Year</option>
+                                                    <option {{$patient->in == 'M' ? 'selected' : ''}} value="M">Month</option>
                                                   </select>
                                             @if ($errors->has('in'))
                                                 <span class="invalid-feedback" role="alert">
