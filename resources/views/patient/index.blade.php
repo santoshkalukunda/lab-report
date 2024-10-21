@@ -2,8 +2,7 @@
 
 @section('content')
     @include('users.partials.header', [
-    'title' => __('Patients List'),
-
+        'title' => __('Patients List'),
     ])
     <div class="container">
         @include('message.message')
@@ -21,6 +20,7 @@
 
                     <div class="card-body table-responsive">
                         <table class="table table-hover">
+                            <th>Action</th>
                             <th>Date</th>
                             <th>Name</th>
                             <th>Address</th>
@@ -29,35 +29,34 @@
                             <th>Email</th>
                             <th>Refered by</th>
                             <th>Performed by</th>
-                            <th colspan="3">Action</th>
                             @foreach ($patients as $patient)
                                 <tr>
+                                    <td class="d-flex">
+                                        <a href="{{ route('patients.edit', $patient) }}"><button data-toggle="tooltip" data-placement="bottom"
+                                                    title="Edit"
+                                                class="btn btn-sm btn-primary fa fa-edit"></button></a>
+
+                                        <a href="{{ route('patients.show', $patient) }}"><button data-toggle="tooltip" data-placement="bottom"
+                                                    title="View Report"
+                                                class="btn btn-sm btn-success fa fa-eye mx-2"></button></a>
+
+                                        <form action="{{ route('patients.destroy', $patient) }}" method="post">
+                                            @method('delete')
+                                            @csrf
+                                            <button class="btn btn-danger btn-sm" type="submit"
+                                                onclick="return confirm('Are you sure to delete?')"><i class="fa fa-trash"
+                                                    data-toggle="tooltip" data-placement="bottom"
+                                                    title="Delete"></i></button>
+                                        </form>
+                                    </td>
                                     <td>{{ $patient->date }}</td>
-                                   <td> <a href="{{ route('patients.show', $patient) }}">{{ $patient->name }}</a></td>
+                                    <td> <a href="{{ route('patients.show', $patient) }}">{{ $patient->name }}</a></td>
                                     <td>{{ $patient->address }}</td>
                                     <td>{{ $patient->age }} {{ $patient->in }}| {{ $patient->gender }}</td>
                                     <td>{{ $patient->phone }}</td>
                                     <td>{{ $patient->email }}</td>
                                     <td>{{ $patient->referred }}</td>
                                     <td>{{ $patient->user->name }}</td>
-                                    <td>
-                                        <a href="{{ route('patients.edit', $patient) }}"><button
-                                                class="btn btn-sm btn-primary fa fa-edit"></button></a>
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('patients.show', $patient) }}"><button
-                                                class="btn btn-sm btn-success fa fa-eye"></button></a>
-                                    </td>
-                                    <td>
-                                        <form action="{{ route('patients.destroy', $patient) }}" method="post">
-                                            @method('delete')
-                                            @csrf
-                                            <button class="btn btn-danger btn-sm" type="submit"
-                                                onclick="return confirm('Are you sure to delete?')"><i
-                                                    class="fa fa-trash" data-toggle="tooltip" data-placement="bottom"
-                                                    title="Delete"></i></button>
-                                        </form>
-                                    </td>
                                 </tr>
                             @endforeach
                         </table>
