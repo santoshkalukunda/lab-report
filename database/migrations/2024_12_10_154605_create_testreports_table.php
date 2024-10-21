@@ -21,7 +21,7 @@ class CreateTestreportsTable extends Migration
             $table->foreignId('test_id')->constrained('tests')->onDelete('cascade');
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->foreign('parent_id')->references('id')->on('tests');
-            $table->string('result');
+            $table->string('result')->nullable();
             $table->string('method')->nullable();
             $table->string('remarks')->nullable();
             $table->tinyInteger('status')->default(0);

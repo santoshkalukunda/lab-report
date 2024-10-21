@@ -90,13 +90,16 @@
                         <input type="text" name="test_id[{{ $index }}]"
                             class="form-control form-control-alternative{{ $errors->has('test_id') ? ' is-invalid' : '' }}"
                             placeholder="{{ __('test_id') }}" value="{{ old('test_id', $test['test_id']) }}" hidden>
+                            <input type="text" name="parent_id[{{ $index }}]"
+                            class="form-control form-control-alternative{{ $errors->has('parent_id') ? ' is-invalid' : '' }}"
+                            placeholder="{{ __('parent_id') }}" value="{{ old('parent_id', $test['parent_id']) }}" hidden>
                         {{ $test['name'] }}
                     </td>
                     <td>
 
                         <input type="text" name="result[{{ $index }}]"
                             class="form-control form-control-alternative{{ $errors->has('result') ? ' is-invalid' : '' }}"
-                            placeholder="{{ __('Result') }}" value="{{ old('result', $test['result']) }}" required>
+                            placeholder="{{ __('Result') }}" value="{{ old('result', $test['result']) }}">
 
                         @if ($errors->has('result[{{ $index }}]'))
                             <span class="invalid-feedback" role="alert">
@@ -111,7 +114,7 @@
                     <td>{{ $test['range'] }}</td>
                     <td>
                         <select class="form-control" name="status[{{ $index }}]">
-                            <option value="0" {{ old('status', $test['status']) == 1 ? 'selected' : '' }}>Normal
+                            <option value="0" {{ old('status', $test['status']) == 0 ? 'selected' : '' }}>Normal
                             </option>
                             <option value="1" {{ old('status', $test['status']) == 1 ? 'selected' : '' }}>Detected
                             </option>

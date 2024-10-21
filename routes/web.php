@@ -58,6 +58,8 @@ Route::group(['middleware' => ['role:super-admin']], function () {
     Route::post('reports/patient/{patient}', [ReportController::class, 'store'])->name('reports.store');
     Route::get('reports/patient/{patient}/create', [ReportController::class, 'create'])->name('reports.create');
     Route::get('reports/{report}/edit', [ReportController::class, 'edit'])->name('reports.edit');
+    Route::get('reports/{report}', [ReportController::class, 'show'])->name('reports.show');
+    Route::get('reports/{report}/invoice', [ReportController::class, 'invoice'])->name('reports.invoice');
     Route::put('reports/{report}', [ReportController::class, 'update'])->name('reports.update');
     Route::delete('reports/{report}', [ReportController::class, 'destroy'])->name('reports.destroy');
 

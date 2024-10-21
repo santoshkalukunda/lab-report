@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Report;
 use App\Http\Requests\StoreReportRequest;
 use App\Http\Requests\UpdateReportRequest;
+use App\Models\Organization;
 use App\Models\Patient;
 use Illuminate\Support\Facades\DB;
 
@@ -69,6 +70,7 @@ class ReportController extends Controller
                     'result' => $request->result[$key] ?? null,
                     'status' => $request->status[$key] ?? null,
                     'method' => $request->method[$key] ?? null,
+                    'parent_id' => $request->parent_id[$key] ?? null,
                 ]);
             }
             DB::commit();
@@ -76,7 +78,7 @@ class ReportController extends Controller
             DB::rollBack();
             throw $th;
         }
-        return redirect()->back()->with('success', 'Report Saved');
+        return redirect()->route('reports.patient',$patient)->with('success', 'Report Saved');
     }
 
     /**
@@ -87,7 +89,48 @@ class ReportController extends Controller
      */
     public function show(Report $report)
     {
-        //
+        $organization = Organization::first();
+        $patient = Patient::find($report->patient_id);
+        $testReports = $report->testreport()->get();
+        foreach ($testReports as $key => $testReport) {
+            $testList[] = [
+                'test_id' => $testReport->test_id,
+                'parent_id' => $testReport->parent_id,
+                'category_id' => $testReport->category_id,
+                'sub_category_id' => $testReport->sub_category_id,
+                'category_name' => $testReport->category->name,
+                'sub_category_name' => $testReport->subCategory->name,
+                'name' => $testReport->test->name,
+                'unit' => $testReport->test->unit,
+                'range' => $testReport->test->range,
+                'result' => $testReport->result,
+                'method' => $testReport->method,
+                'status' => $testReport->status,
+                'level' => $testReport->parent_id ? 2 : 1,
+            ];
+        }
+        return view('report.show', compact('patient', 'report', 'testList', 'organization'));
+    }
+    public function invoice(Report $report)
+    {
+        $organization = Organization::first();
+        $patient = Patient::find($report->patient_id);
+        $testReports = $report->testreport()->get();
+        foreach ($testReports as $key => $testReport) {
+            $testList[] = [
+                'test_id' => $testReport->test_id,
+                'parent_id' => $testReport->parent_id,
+                'category_id' => $testReport->category_id,
+                'sub_category_id' => $testReport->sub_category_id,
+                'category_name' => $testReport->category->name,
+                'sub_category_name' => $testReport->subCategory->name,
+                'name' => $testReport->test->name,
+                'rate' => $testReport->test->rate,
+                'level' => $testReport->parent_id ? 2 : 1,
+            ];
+        }
+        $testList = collect($testList);
+        return view('report.invoice', compact('patient', 'report', 'testList', 'organization'));
     }
 
     /**
@@ -113,11 +156,13 @@ class ReportController extends Controller
     {
         try {
             DB::beginTransaction();
-             $report->update([
+            $report->update([
                 'registed_date' => $request->registed_date,
                 'refer_by' => $request->refer_by,
                 'remarks' => $request->remarks,
             ]);
+            // dd($request);
+
             $report->testreport()->delete();
             foreach ($request->test_id as $key => $test_id) {
                 $report->testreport()->create([
@@ -127,6 +172,7 @@ class ReportController extends Controller
                     'result' => $request->result[$key] ?? null,
                     'status' => $request->status[$key] ?? null,
                     'method' => $request->method[$key] ?? null,
+                    'parent_id' => $request->parent_id[$key] ?? null,
                 ]);
             }
             DB::commit();

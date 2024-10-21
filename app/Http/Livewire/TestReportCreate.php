@@ -49,7 +49,7 @@ class TestReportCreate extends Component
                     'result' => $testReport->result,
                     'method' => $testReport->method,
                     'status' => $testReport->status,
-                    'level' => 1,
+                    'level' => $testReport->parent_id ? 2 : 1,
                 ];
             }
         }
