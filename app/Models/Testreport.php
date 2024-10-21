@@ -10,9 +10,9 @@ class Testreport extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function patient()
+    public function report()
     {
-        return $this->belongsTo(Patient::class, 'patient_id');
+        return $this->belongsTo(Report::class, 'report_id');
     }
     public function test()
     {
